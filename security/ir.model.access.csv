@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_free_trial_lead_admin,web_method.free_trial_lead admin,model_web_method_free_trial_lead,base.group_system,1,1,1,1
+access_free_trial_lead_user,web_method.free_trial_lead user,model_web_method_free_trial_lead,base.group_user,1,0,0,0
+access_free_trial_lead_public,web_method.free_trial_lead public,model_web_method_free_trial_lead,base.group_public,0,0,1,0

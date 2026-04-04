@@ -1,0 +1,528 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ============================================================
+         Botón "Prueba Gratis" en el navbar del sitio web
+    ============================================================ -->
+    <template id="free_trial_navbar_button"
+              name="Prueba Gratis - Botón Navbar"
+              inherit_id="website.placeholder_header_call_to_action">
+        <xpath expr="." position="inside">
+            <t t-if="website.name == 'Method'">
+                <a href="/prueba-gratis" class="btn btn-secondary ms-2">
+                    Prueba Gratis
+                </a>
+            </t>
+        </xpath>
+    </template>
+
+    <!-- ============================================================
+         Página del formulario: /prueba-gratis
+    ============================================================ -->
+    <template id="free_trial_page" name="Prueba Gratis - Formulario">
+        <t t-call="website.layout">
+            <t t-set="head">
+                <!-- reCAPTCHA API — reemplaza TU_SITE_KEY_AQUI con tu clave de Google reCAPTCHA v2 -->
+                <script src="https://www.google.com/recaptcha/api.js" async="async" defer="defer"/>
+                <style>
+                    /* ---- Layout general ---- */
+                    .o_free_trial_section {
+                        min-height: 85vh;
+                        display: flex;
+                        align-items: center;
+                        background: #f7f9fc;
+                        position: relative;
+                        overflow: hidden;
+                    }
+                    .o_free_trial_info h1 {
+                        font-size: 2.4rem;
+                        font-weight: 700;
+                        line-height: 1.2;
+                        color: #1a1a2e;
+                    }
+                    .o_free_trial_info h1 strong { color: #ff6600; }
+                    .o_free_trial_info ul {
+                        margin-top: 1.5rem;
+                        padding-left: 1.2rem;
+                        color: #444;
+                        font-size: 1rem;
+                    }
+                    .o_free_trial_info ul li { margin-bottom: 0.5rem; }
+
+                    /* ---- Tarjeta del formulario ---- */
+                    .o_free_trial_card {
+                        background: #fff;
+                        border-radius: 16px;
+                        box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+                        padding: 2.5rem 2rem;
+                    }
+                    .o_free_trial_card h2 {
+                        font-size: 1.5rem;
+                        font-weight: 700;
+                        text-align: center;
+                        color: #1a1a2e;
+                        margin-bottom: 1.5rem;
+                    }
+                    .o_free_trial_card .form-control {
+                        border-radius: 50px;
+                        border: 1.5px solid #d0d0d0;
+                        padding: 0.6rem 1.2rem;
+                        font-size: 0.95rem;
+                    }
+                    .o_free_trial_card .form-control:focus {
+                        border-color: #ff6600;
+                        box-shadow: 0 0 0 0.15rem rgba(255,102,0,0.15);
+                    }
+                    .o_free_trial_card .input-group-text {
+                        border-radius: 50px 0 0 50px;
+                        background: #f0f0f0;
+                        border: 1.5px solid #d0d0d0;
+                        border-right: none;
+                        color: #555;
+                        font-size: 0.9rem;
+                    }
+                    .o_free_trial_card .input-group .form-control {
+                        border-radius: 0 50px 50px 0;
+                        border-left: none;
+                    }
+
+                    /* ---- reCAPTCHA ---- */
+                    .o_recaptcha_wrap {
+                        display: flex;
+                        justify-content: center;
+                        margin: 0.25rem 0;
+                    }
+
+                    /* ---- Botón activar ---- */
+                    .btn-activar {
+                        background-color: #ff6600;
+                        border-color: #ff6600;
+                        color: #fff;
+                        font-weight: 700;
+                        border-radius: 50px;
+                        padding: 0.7rem;
+                        font-size: 1.05rem;
+                        width: 100%;
+                        transition: background 0.2s;
+                    }
+                    .btn-activar:hover {
+                        background-color: #e05a00;
+                        border-color: #e05a00;
+                        color: #fff;
+                    }
+
+                    /* ---- Barra de pasos ---- */
+                    .o_free_trial_steps {
+                        background: #3a7bd5;
+                        border-radius: 12px;
+                        padding: 1rem 1.5rem;
+                        display: flex;
+                        justify-content: space-around;
+                        margin-top: 2rem;
+                    }
+                    .o_free_trial_steps .step {
+                        text-align: center;
+                        color: #fff;
+                        font-size: 0.78rem;
+                        flex: 1;
+                        padding: 0 0.5rem;
+                    }
+                    .o_free_trial_steps .step-num {
+                        display: inline-block;
+                        width: 22px; height: 22px;
+                        border-radius: 50%;
+                        background: rgba(255,255,255,0.25);
+                        line-height: 22px;
+                        font-weight: 700;
+                        margin-bottom: 4px;
+                        font-size: 0.8rem;
+                    }
+
+                    /* ---- Toggle Preguntas frecuentes ---- */
+                    .o_faq_toggle {
+                        background: #1e2a3a;
+                        color: #ccc;
+                        font-size: 0.92rem;
+                        padding: 0.85rem 2rem;
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        cursor: pointer;
+                        border-radius: 0 0 16px 16px;
+                        user-select: none;
+                        transition: background 0.2s;
+                    }
+                    .o_faq_toggle:hover { background: #263344; color: #fff; }
+                    .o_faq_toggle .faq-arrow {
+                        color: #000 !important;
+                        font-size: 0.8rem;
+                        transition: transform 0.3s;
+                        flex-shrink: 0;
+                    }
+                    .o_faq_toggle.open .faq-arrow { transform: rotate(90deg); }
+
+                    /* ---- Panel Preguntas frecuentes ---- */
+                    .o_faq_panel {
+                        position: fixed;
+                        top: 0; right: -480px;
+                        width: 460px;
+                        max-width: 95vw;
+                        height: 100vh;
+                        background: #1e2a3a;
+                        color: #ddd;
+                        z-index: 9999;
+                        overflow-y: auto;
+                        transition: right 0.35s ease;
+                        padding: 0;
+                        box-shadow: -4px 0 24px rgba(0,0,0,0.35);
+                    }
+                    .o_faq_panel.open { right: 0; }
+                    .o_faq_panel .faq-header {
+                        display: flex;
+                        align-items: center;
+                        padding: 1.2rem 1.5rem;
+                        border-bottom: 1px solid rgba(255,255,255,0.08);
+                        position: sticky; top: 0;
+                        background: #1e2a3a;
+                        z-index: 1;
+                    }
+                    .o_faq_panel .faq-header h3 {
+                        margin: 0;
+                        font-size: 1.15rem;
+                        font-weight: 700;
+                        color: #fff;
+                    }
+                    .o_faq_panel .faq-back {
+                        color: #aaa;
+                        font-size: 1.3rem;
+                        cursor: pointer;
+                        margin-right: 1rem;
+                        background: none;
+                        border: none;
+                        padding: 0;
+                        line-height: 1;
+                    }
+                    .o_faq_panel .faq-back:hover { color: #fff; }
+
+                    /* ---- Accordion FAQ items ---- */
+                    .o_faq_item {
+                        border-bottom: 1px solid rgba(255,255,255,0.07);
+                    }
+                    .o_faq_item .faq-question {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        padding: 1rem 1.5rem;
+                        cursor: pointer;
+                        font-size: 0.93rem;
+                        color: #ddd;
+                        transition: color 0.2s;
+                    }
+                    .o_faq_item .faq-question:hover { color: #fff; }
+                    .o_faq_item .faq-question .faq-plus {
+                        font-size: 1.3rem;
+                        color: #aaa;
+                        transition: transform 0.25s;
+                        flex-shrink: 0;
+                        margin-left: 1rem;
+                    }
+                    .o_faq_item.active .faq-question .faq-plus { transform: rotate(45deg); color: #ff6600; }
+                    .o_faq_item .faq-answer {
+                        max-height: 0;
+                        overflow: hidden;
+                        transition: max-height 0.35s ease, padding 0.25s;
+                        padding: 0 1.5rem;
+                        font-size: 0.88rem;
+                        color: #aaa;
+                        line-height: 1.6;
+                    }
+                    .o_faq_item.active .faq-answer {
+                        max-height: 600px;
+                        padding: 0 1.5rem 1rem;
+                    }
+
+                    /* ---- Overlay ---- */
+                    .o_faq_overlay {
+                        display: none;
+                        position: fixed;
+                        inset: 0;
+                        background: rgba(0,0,0,0.45);
+                        z-index: 9998;
+                    }
+                    .o_faq_overlay.open { display: block; }
+
+                    .alert-danger-pill { border-radius: 8px; font-size: 0.9rem; }
+                </style>
+            </t>
+
+            <!-- Overlay oscuro al abrir FAQ -->
+            <div class="o_faq_overlay" id="faqOverlay" onclick="closeFaqPanel()"/>
+
+            <!-- Panel deslizante de Preguntas Frecuentes -->
+            <div class="o_faq_panel" id="faqPanel">
+                <div class="faq-header">
+                    <button class="faq-back" onclick="closeFaqPanel()">&#8592;</button>
+                    <h3>Preguntas Frecuentes</h3>
+                </div>
+
+                <!-- FAQ 1 -->
+                <div class="o_faq_item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>¿Cuántos usuarios permite Method?</span>
+                        <span class="faq-plus">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Todos los planes de Method permiten múltiples usuarios, todos los que tú quieras.
+                        Así, puedes saber quién hizo qué acción en tu empresa. Puedes definir roles
+                        específicos para cada usuario, de acuerdo a su perfil (vendedor, contador, bodeguero, etc).
+                    </div>
+                </div>
+
+                <!-- FAQ 2 -->
+                <div class="o_faq_item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>¿Cómo funciona la prueba gratis?</span>
+                        <span class="faq-plus">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Puedes probar Method gratis por 30 días. No necesitas entregar datos de tarjeta de crédito
+                        ni información de pago. Queremos que compruebes la simpleza del sistema y lo fácil que es usarlo.
+                        La prueba gratis no incluye la emisión de boletas ni facturas en forma electrónica,
+                        ya que hay que enrolar al contribuyente en el SII.
+                    </div>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div class="o_faq_item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>¿Puedo cambiar el plan después de un tiempo?</span>
+                        <span class="faq-plus">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        ¡Sí! Eres libre de cambiarte de plan cuando quieras.
+                    </div>
+                </div>
+
+                <!-- FAQ 4 -->
+                <div class="o_faq_item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>¿Puedo descontratar el plan en cualquier momento?</span>
+                        <span class="faq-plus">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Sí. Al contratar el servicio pagas un arriendo mensual y no una licencia de millones de pesos
+                        por el software. Esto te permite exigir un excelente servicio post venta al pagar mes a mes,
+                        sin tener un contrato de largo plazo.<br/><br/>
+                        Puedes descontratar el mes que quieras. Los clientes están con nosotros porque Method les sirve
+                        y les genera valor, no por un contrato que los tiene amarrados.<br/><br/>
+                        Es importante destacar que el contribuyente al desafiliarse debe ir al SII a solicitar la
+                        desafiliación al software de facturación electrónica de mercado.
+                    </div>
+                </div>
+
+                <!-- FAQ 5 -->
+                <div class="o_faq_item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>¿Cómo se paga? ¿Qué medios tienen?</span>
+                        <span class="faq-plus">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Puedes pagar en la página directamente con tarjeta de crédito o hacer transferencia electrónica.
+                        También se puede suscribir un PAC, de manera de que el pago se haga automáticamente.
+                    </div>
+                </div>
+
+                <!-- FAQ 6 -->
+                <div class="o_faq_item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>¿Cuánto se demora la puesta en marcha de Method en mi empresa?</span>
+                        <span class="faq-plus">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        La puesta en marcha contempla el enrolamiento de tu empresa en el SII, certificado digital,
+                        capacitación y configuración.<br/><br/>
+                        El tiempo puede llevar hasta 4 semanas, dependiendo de los tiempos del SII y de si se tienen
+                        temas pendientes (verificación de domicilios, verificación de actividad comercial, IVAs, etc).
+                    </div>
+                </div>
+
+                <!-- FAQ 7 -->
+                <div class="o_faq_item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>¿Qué incluye el pago inicial?</span>
+                        <span class="faq-plus">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        La activación considera el enrolamiento en SII para emitir documentos tributarios electrónicos,
+                        certificado digital válido por 2 años, capacitación y configuración.<br/><br/>
+                        El enrolamiento incluye boleta electrónica, factura electrónica, nota de crédito electrónica,
+                        nota de débito electrónica y guía de despacho electrónica.
+                    </div>
+                </div>
+
+                <!-- FAQ 8 -->
+                <div class="o_faq_item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>¿Hay un cobro o comisión por las ventas que haga a través de Method?</span>
+                        <span class="faq-plus">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        En Method no cobramos comisiones por ventas. El único cobro es el correspondiente
+                        al valor de tu plan y servicios adicionales contratados.
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== Sección principal ===== -->
+            <div class="o_free_trial_section py-5">
+                <div class="container">
+                    <div class="row align-items-center g-5">
+
+                        <!-- Columna izquierda: texto -->
+                        <div class="col-lg-6 o_free_trial_info">
+                            <h1>Comprueba los beneficios de <strong>Method</strong> con una prueba gratuita</h1>
+                            <ul>
+                                <li>No necesitas agregar datos de tarjeta de crédito</li>
+                                <li>La prueba gratis no incluye la emisión de boletas ni facturas electrónicas</li>
+                            </ul>
+                            <!-- Barra de pasos -->
+                            <div class="o_free_trial_steps">
+                                <div class="step">
+                                    <div><span class="step-num">1</span></div>
+                                    <div>Registra tus datos</div>
+                                </div>
+                                <div class="step">
+                                    <div><span class="step-num">2</span></div>
+                                    <div>Revisa tu correo para activar tu usuario</div>
+                                </div>
+                                <div class="step">
+                                    <div><span class="step-num">3</span></div>
+                                    <div>¡Listo! ya puedes usar Method</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Columna derecha: formulario + FAQ -->
+                        <div class="col-lg-6">
+                            <div class="o_free_trial_card">
+                                <h2>¡Empieza a utilizar Method!</h2>
+
+                                <t t-if="error">
+                                    <div class="alert alert-danger alert-danger-pill" role="alert">
+                                        <t t-esc="error"/>
+                                    </div>
+                                </t>
+
+                                <form action="/prueba-gratis/enviar" method="post" id="freeTrialForm">
+                                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                    <div class="row g-3">
+                                        <div class="col-6">
+                                            <input type="text" name="name" class="form-control"
+                                                   placeholder="Nombre"
+                                                   t-att-value="values and values.get('name') or ''"
+                                                   required="required"/>
+                                        </div>
+                                        <div class="col-6">
+                                            <input type="text" name="apellido" class="form-control"
+                                                   placeholder="Apellido"
+                                                   t-att-value="values and values.get('apellido') or ''"/>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="input-group">
+                                                <span class="input-group-text">+56</span>
+                                                <input type="tel" name="phone" class="form-control"
+                                                       placeholder="Teléfono"
+                                                       t-att-value="values and values.get('phone') or ''"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <input type="email" name="email" class="form-control"
+                                                   placeholder="Correo"
+                                                   t-att-value="values and values.get('email') or ''"
+                                                   required="required"/>
+                                        </div>
+                                        <div class="col-12">
+                                            <input type="text" name="company_name" class="form-control"
+                                                   placeholder="Nombre de tu negocio"
+                                                   t-att-value="values and values.get('company_name') or ''"/>
+                                        </div>
+                                        <div class="col-12">
+                                            <input type="text" name="how_found" class="form-control"
+                                                   placeholder="¿Cómo te enteraste de nosotros?"
+                                                   t-att-value="values and values.get('how_found') or ''"/>
+                                        </div>
+
+                                        <!-- reCAPTCHA v2 -->
+                                        <!-- IMPORTANTE: reemplaza TU_SITE_KEY_AQUI con tu Site Key de Google reCAPTCHA -->
+                                        <div class="col-12">
+                                            <div class="o_recaptcha_wrap">
+                                                <div class="g-recaptcha" data-sitekey="6LfPU50sAAAAAD2Y9pkN4YvRvAUkxBk-t5-YKq8L"/>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12">
+                                            <button type="submit" class="btn btn-activar">¡Activar!</button>
+                                        </div>
+                                    </div>
+                                </form>
+
+                            </div>
+
+                            <!-- Toggle Preguntas Frecuentes -->
+                            <div class="o_faq_toggle" id="faqToggle" onclick="openFaqPanel()">
+                                <span>Preguntas frecuentes</span>
+                                <span class="faq-arrow">&#9654;</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                function openFaqPanel() {
+                    document.getElementById('faqPanel').classList.add('open');
+                    document.getElementById('faqOverlay').classList.add('open');
+                    document.body.style.overflow = 'hidden';
+                }
+                function closeFaqPanel() {
+                    document.getElementById('faqPanel').classList.remove('open');
+                    document.getElementById('faqOverlay').classList.remove('open');
+                    document.body.style.overflow = '';
+                }
+                function toggleFaq(el) {
+                    var item = el.closest('.o_faq_item');
+                    var isActive = item.classList.contains('active');
+                    document.querySelectorAll('.o_faq_item.active').forEach(function(i) { i.classList.remove('active'); });
+                    if (!isActive) { item.classList.add('active'); }
+                }
+            </script>
+        </t>
+    </template>
+
+    <!-- ============================================================
+         Página de agradecimiento: /prueba-gratis/gracias
+    ============================================================ -->
+    <template id="free_trial_thanks" name="Prueba Gratis - Gracias">
+        <t t-call="website.layout">
+            <div class="container text-center py-5"
+                 style="min-height: 70vh; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                <div style="max-width: 520px; margin: auto;">
+                    <div style="font-size: 4rem; margin-bottom: 1rem;">&#x1F389;</div>
+                    <h1 style="font-size: 2rem; font-weight: 700; color: #1a1a2e;">
+                        ¡Gracias<t t-if="nombre">, <t t-esc="nombre"/></t>!
+                    </h1>
+                    <p class="mt-3" style="font-size: 1.1rem; color: #555;">
+                        Hemos recibido tu solicitud. En breve recibirás un correo para activar tu cuenta
+                        y comenzar a disfrutar de Method.
+                    </p>
+                    <a href="/" class="btn mt-4"
+                       style="background-color: #ff6600; border-color: #ff6600; color: #fff; font-weight: 600; border-radius: 50px; padding: 10px 32px; font-size: 1rem;">
+                        Volver al inicio
+                    </a>
+                </div>
+            </div>
+        </t>
+    </template>
+
+</odoo>
