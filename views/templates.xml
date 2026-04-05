@@ -40,7 +40,7 @@
                         line-height: 1.2;
                         color: #1a1a2e;
                     }
-                    .o_free_trial_info h1 strong { color: #ff6600; }
+                    .o_free_trial_info h1 strong { color: #F37720; }
                     .o_free_trial_info ul {
                         margin-top: 1.5rem;
                         padding-left: 1.2rem;
@@ -70,8 +70,8 @@
                         font-size: 0.95rem;
                     }
                     .o_free_trial_card .form-control:focus {
-                        border-color: #ff6600;
-                        box-shadow: 0 0 0 0.15rem rgba(255,102,0,0.15);
+                        border-color: #F37720;
+                        box-shadow: 0 0 0 0.15rem rgba(243,119,32,0.15);
                     }
                     .o_free_trial_card .input-group-text {
                         border-radius: 50px 0 0 50px;
@@ -95,8 +95,8 @@
 
                     /* ---- Botón activar ---- */
                     .btn-activar {
-                        background-color: #ff6600;
-                        border-color: #ff6600;
+                        background-color: #F37720;
+                        border-color: #F37720;
                         color: #fff;
                         font-weight: 700;
                         border-radius: 50px;
@@ -226,7 +226,7 @@
                         flex-shrink: 0;
                         margin-left: 1rem;
                     }
-                    .o_faq_item.active .faq-question .faq-plus { transform: rotate(45deg); color: #ff6600; }
+                    .o_faq_item.active .faq-question .faq-plus { transform: rotate(45deg); color: #F37720; }
                     .o_faq_item .faq-answer {
                         max-height: 0;
                         overflow: hidden;
@@ -517,7 +517,7 @@
                         y comenzar a disfrutar de Method.
                     </p>
                     <a href="/" class="btn mt-4"
-                       style="background-color: #ff6600; border-color: #ff6600; color: #fff; font-weight: 600; border-radius: 50px; padding: 10px 32px; font-size: 1rem;">
+                       style="background-color: #F37720; border-color: #F37720; color: #fff; font-weight: 600; border-radius: 50px; padding: 10px 32px; font-size: 1rem;">
                         Volver al inicio
                     </a>
                 </div>

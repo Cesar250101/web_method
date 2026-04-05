@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <!-- Limpia el dominio del sitio web Method (ejecutado via post_init_hook) -->
+    </data>
+</odoo>

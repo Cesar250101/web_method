@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ============================================================
+         Snippet: Cuadrícula de Módulos Odoo — estilo Method
+    ============================================================ -->
+    <template id="s_method_modules" name="Módulos Odoo — Method">
+        <section class="s_method_modules py-5" style="background:#f7f9fc;">
+            <div class="container">
+
+                <!-- Encabezado opcional -->
+                <div class="text-center mb-5">
+                    <h2 class="smm-title">Todo lo que tu empresa necesita, <span class="smm-accent">en un solo lugar</span></h2>
+                    <p class="smm-subtitle">Activa solo los módulos que necesitas y expande cuando quieras crecer.</p>
+                </div>
+
+                <div class="row g-3">
+
+                    <!-- CRM -->
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <div class="smm-card">
+                            <div class="smm-icon-wrap">
+                                <i class="fa fa-handshake-o smm-icon"/>
+                            </div>
+                            <h3 class="smm-name">CRM</h3>
+                            <p class="smm-desc">Centraliza prospectos y oportunidades para cerrar más negocios con tu equipo comercial.</p>
+                        </div>
+                    </div>
+
+                    <!-- Ventas -->
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <div class="smm-card">
+                            <div class="smm-icon-wrap">
+                                <i class="fa fa-shopping-cart smm-icon"/>
+                            </div>
+                            <h3 class="smm-name">Ventas</h3>
+                            <p class="smm-desc">Genera cotizaciones y pedidos en minutos, con seguimiento del estado de cada venta.</p>
+                        </div>
+                    </div>
+
+                    <!-- Compras -->
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <div class="smm-card">
+                            <div class="smm-icon-wrap">
+                                <i class="fa fa-truck smm-icon"/>
+                            </div>
+                            <h3 class="smm-name">Compras</h3>
+                            <p class="smm-desc">Automatiza solicitudes, órdenes de compra y recepciones de mercadería con tus proveedores.</p>
+                        </div>
+                    </div>
+
+                    <!-- Inventario -->
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <div class="smm-card">
+                            <div class="smm-icon-wrap">
+                                <i class="fa fa-cubes smm-icon"/>
+                            </div>
+                            <h3 class="smm-name">Inventario</h3>
+                            <p class="smm-desc">Control de stock en tiempo real, multi-bodega y trazabilidad completa de cada producto.</p>
+                        </div>
+                    </div>
+
+                    <!-- Contabilidad -->
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <div class="smm-card">
+                            <div class="smm-icon-wrap">
+                                <i class="fa fa-calculator smm-icon"/>
+                            </div>
+                            <h3 class="smm-name">Contabilidad</h3>
+                            <p class="smm-desc">Conciliación bancaria, reportes financieros y cierre de mes sin complicaciones.</p>
+                        </div>
+                    </div>
+
+                    <!-- Facturación DTE -->
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <div class="smm-card">
+                            <div class="smm-icon-wrap">
+                                <i class="fa fa-file-text-o smm-icon"/>
+                            </div>
+                            <h3 class="smm-name">Facturación DTE</h3>
+                            <p class="smm-desc">Emite boletas, facturas y guías de despacho electrónicas integradas al SII de Chile.</p>
+                        </div>
+                    </div>
+
+                    <!-- RRHH -->
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <div class="smm-card">
+                            <div class="smm-icon-wrap">
+                                <i class="fa fa-id-card-o smm-icon"/>
+                            </div>
+                            <h3 class="smm-name">Recursos Humanos</h3>
+                            <p class="smm-desc">Contratos, ausencias, vacaciones y liquidaciones de sueldo en un solo sistema.</p>
+                        </div>
+                    </div>
+
+                    <!-- Proyectos -->
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <div class="smm-card">
+                            <div class="smm-icon-wrap">
+                                <i class="fa fa-tasks smm-icon"/>
+                            </div>
+                            <h3 class="smm-name">Proyectos</h3>
+                            <p class="smm-desc">Tableros Kanban, seguimiento de tareas y control de horas para cada proyecto.</p>
+                        </div>
+                    </div>
+
+                    <!-- eCommerce -->
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <div class="smm-card">
+                            <div class="smm-icon-wrap">
+                                <i class="fa fa-globe smm-icon"/>
+                            </div>
+                            <h3 class="smm-name">eCommerce</h3>
+                            <p class="smm-desc">Vende en línea con tu tienda sincronizada al inventario y medios de pago locales.</p>
+                        </div>
+                    </div>
+
+                    <!-- Email Marketing -->
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <div class="smm-card">
+                            <div class="smm-icon-wrap">
+                                <i class="fa fa-envelope-o smm-icon"/>
+                            </div>
+                            <h3 class="smm-name">Email Marketing</h3>
+                            <p class="smm-desc">Diseña campañas, segmenta tu base de contactos y mide tasas de apertura y conversión.</p>
+                        </div>
+                    </div>
+
+                    <!-- Punto de Venta -->
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <div class="smm-card">
+                            <div class="smm-icon-wrap">
+                                <i class="fa fa-desktop smm-icon"/>
+                            </div>
+                            <h3 class="smm-name">Punto de Venta</h3>
+                            <p class="smm-desc">POS ágil e intuitivo para locales físicos o restaurantes, conectado a tu stock en tiempo real.</p>
+                        </div>
+                    </div>
+
+                    <!-- Manufactura -->
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <div class="smm-card">
+                            <div class="smm-icon-wrap">
+                                <i class="fa fa-cogs smm-icon"/>
+                            </div>
+                            <h3 class="smm-name">Manufactura</h3>
+                            <p class="smm-desc">Órdenes de producción, listas de materiales y control de calidad integrados a tu operación.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </template>
+
+    <!-- ============================================================
+         Snippet: Cabecera Hero ERP — estilo Method
+    ============================================================ -->
+    <template id="s_method_hero_erp" name="Cabecera Hero ERP — Method">
+        <section class="s_method_hero_erp pt-5 pb-5" style="background-color: #f4f7fa;">
+            <div class="container pb-4 pt-4">
+                <div class="row align-items-center">
+                    <!-- Columna de Texto -->
+                    <div class="col-lg-6 mb-5 mb-lg-0 o_colored_level pe-lg-5">
+                        <h4 class="mb-3" style="color: #676a76; font-weight: 700; font-size: 1.15rem;">
+                            Especialistas en Odoo ERP en Chile: Optimiza tu gestión empresarial
+                        </h4>
+                        <h2 class="display-5 fw-bold mb-4" style="color: #676a76; line-height: 1.2;">
+                            Transforma la operación de tu empresa con un <span style="color: #F37720;">Software ERP en la nube</span>
+                        </h2>
+                        <p class="lead mb-4" style="color: #535b67; font-size: 1.05rem; line-height: 1.6;">
+                            Deja atrás el trabajo manual y las planillas aisladas. Con nuestra plataforma ERP integral, lograrás centralizar la información, ahorrar tiempo y reducir la carga operativa de tu equipo. Supervisa tus ventas, lleva el control del inventario, flujos de compra y gestiona tu contabilidad de forma segura en un solo lugar.
+                        </p>
+                        <a href="/contactus" class="btn btn-primary btn-lg rounded-2 mt-2" style="background-color: #676a76; border-color: #676a76; color: #ffffff; padding: 12px 30px; font-weight: 600;">
+                            Cotiza aquí
+                        </a>
+                        <a href="/prueba-gratis" class="btn btn-secondary btn-lg rounded-2 mt-2 ms-2" style="background-color: #F37720; border-color: #F37720; color: #ffffff; padding: 12px 30px; font-weight: 700;">
+                            Prueba Gratis
+                        </a>
+                    </div>
+                    <!-- Columna de Imagen -->
+                    <div class="col-lg-6 text-center o_colored_level">
+                        <img src="/web_method/static/src/img/ERP_Principal.png" class="img-fluid rounded-4 shadow-lg w-100" alt="Software ERP Method" loading="lazy" style="box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-radius: 20px;"/>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+
+    <!-- ============================================================
+         Snippet: Banner de Prueba Gratis — estilo Method
+    ============================================================ -->
+    <template id="s_method_free_trial_banner" name="Banner Prueba Gratis — Method">
+        <section class="s_method_free_trial_banner pt-5 pb-5" style="background-color: #f4f7fa;">
+            <div class="container">
+                <div class="card border-0 shadow" style="border-radius: 20px; overflow: hidden; background: #ffffff;">
+                    <div class="row g-0 align-items-center">
+                        <!-- Columna de Imagen -->
+                        <div class="col-lg-5 p-0 o_colored_level h-100">
+                            <img src="/web_method/static/src/img/PruebaGratis.png" class="img-fluid w-100" style="object-fit: cover; min-height: 100%;" alt="Prueba Gratis Method ERP" loading="lazy"/>
+                        </div>
+                        <!-- Columna de Texto -->
+                        <div class="col-lg-7 p-4 p-md-5 o_colored_level">
+                            <h2 class="fw-bold mb-3" style="color: #676a76; font-size: 2.2rem; line-height: 1.2;">
+                                ¡Pruébalo gratis y sin compromisos!
+                            </h2>
+                            <p class="mb-4" style="color: #535b67; font-size: 1.1rem; line-height: 1.6;">
+                                Descubre lo fácil que es tomar el control total de tu empresa. Empieza a operar en la nube de inmediato con nuestra demostración libre de costo. Disfruta de acceso a las herramientas principales y comprueba la fluidez del sistema. No te pediremos tarjeta de crédito ni contratos forzosos. ¡Empieza tu transformación digital hoy!
+                            </p>
+                            <a href="/prueba-gratis" class="btn btn-primary btn-lg rounded-2" style="padding: 12px 32px; font-weight: 700; font-size: 1.05rem;">
+                                ¡Comenzar mi prueba!
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+
+    <!-- ============================================================
+         Snippet: Estadísticas de Confianza — estilo Method
+    ============================================================ -->
+    <template id="s_method_stats_trust" name="Estadísticas de Confianza — Method">
+        <section class="s_method_stats_trust pt-5 pb-5" style="background-color: #f8f9fa;">
+            <div class="container pb-4 pt-4">
+                <div class="row mb-5 text-center">
+                    <div class="col-lg-8 offset-lg-2 o_colored_level">
+                        <h2 class="fw-bold mb-3" style="color: #676a76; font-size: 2.2rem;">
+                            Resultados que validan nuestro compromiso
+                        </h2>
+                        <p style="color: #535b67; font-size: 1.1rem; line-height: 1.6;">
+                            Cientos de compañías han modernizado su operación gracias a la implementación de nuestras soluciones tecnológicas. Te acompañamos en cada etapa de crecimiento con un soporte ágil y herramientas robustas.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="row text-center pt-2">
+                    <!-- Stat 1 -->
+                    <div class="col-6 col-md-3 mb-4 o_colored_level" style="border-right: 1px solid #e0e0e0;">
+                        <div class="mb-3">
+                            <i class="fa fa-building fa-3x" style="color: #F37720;"/>
+                        </div>
+                        <h3 class="fw-bold display-6 mb-1" style="color: #676a76; font-size: 2.8rem;">+1.5K</h3>
+                        <p class="text-muted fw-bold text-uppercase" style="letter-spacing: 1px; font-size: 0.85rem;">Compañías activas</p>
+                    </div>
+                    <!-- Stat 2 -->
+                    <div class="col-6 col-md-3 mb-4 o_colored_level" style="border-right: 1px solid #e0e0e0;">
+                        <div class="mb-3">
+                            <i class="fa fa-users fa-3x" style="color: #F37720;"/>
+                        </div>
+                        <h3 class="fw-bold display-6 mb-1" style="color: #676a76; font-size: 2.8rem;">+10K</h3>
+                        <p class="text-muted fw-bold text-uppercase" style="letter-spacing: 1px; font-size: 0.85rem;">Usuarios Diarios</p>
+                    </div>
+                    <!-- Stat 3 -->
+                    <div class="col-6 col-md-3 mb-4 o_colored_level" style="border-right: 1px solid #e0e0e0;">
+                        <div class="mb-3">
+                            <i class="fa fa-file-text-o fa-3x" style="color: #F37720;"/>
+                        </div>
+                        <h3 class="fw-bold display-6 mb-1" style="color: #676a76; font-size: 2.8rem;">+3M</h3>
+                        <p class="text-muted fw-bold text-uppercase" style="letter-spacing: 1px; font-size: 0.85rem;">DTEs Transmitidos</p>
+                    </div>
+                    <!-- Stat 4 -->
+                    <div class="col-6 col-md-3 mb-4 o_colored_level">
+                        <div class="mb-3">
+                            <i class="fa fa-clock-o fa-3x" style="color: #F37720;"/>
+                        </div>
+                        <h3 class="fw-bold display-6 mb-1" style="color: #676a76; font-size: 2.8rem;">&lt;5 Min</h3>
+                        <p class="text-muted fw-bold text-uppercase" style="letter-spacing: 1px; font-size: 0.85rem;">Tiempo de asistencia</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+
+    <!-- ============================================================
+         Registro en el panel de snippets del editor web
+    ============================================================ -->
+    <template id="snippets_method_modules"
+              inherit_id="website.snippets"
+              name="Snippet: Módulos Odoo Method">
+        <xpath expr="//div[@id='snippet_structure']/div[hasclass('o_panel_body')]" position="before">
+            <div id="snippet_method" class="o_panel">
+                <div class="o_panel_header">Method</div>
+                <div class="o_panel_body">
+                    <t t-snippet="web_method.s_method_stats_trust"
+                       string="Estadísticas Method"
+                       t-thumbnail="/web_method/static/src/img/thumb_modules.svg">
+                        <keywords>estadisticas, numeros, confianza, method, datos</keywords>
+                    </t>
+                    <t t-snippet="web_method.s_method_free_trial_banner"
+                       string="Banner Prueba Gratis"
+                       t-thumbnail="/web_method/static/src/img/thumb_modules.svg">
+                        <keywords>banner, prueba, gratis, method, cta</keywords>
+                    </t>
+                    <t t-snippet="web_method.s_method_hero_erp"
+                       string="Hero ERP"
+                       t-thumbnail="/web_method/static/src/img/thumb_modules.svg">
+                        <keywords>hero, erp, method, cabecera, portada</keywords>
+                    </t>
+                    <t t-snippet="web_method.s_method_modules"
+                       string="Módulos Odoo"
+                       t-thumbnail="/web_method/static/src/img/thumb_modules.svg">
+                        <keywords>módulos, odoo, apps, funcionalidades</keywords>
+                    </t>
+                </div>
+            </div>
+        </xpath>
+    </template>
+
+</odoo>

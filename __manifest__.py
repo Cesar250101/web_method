@@ -1,6 +1,6 @@
 {
     'name': 'Web Method',
-    'version': '16.0.1.0.0',
+    'version': '16.0.1.0.2',
     'summary': 'Módulo para métodos web personalizados',
     'description': 'Módulo base para definir métodos web y controladores HTTP personalizados en Odoo.',
     'category': 'Technical',
@@ -14,15 +14,19 @@
     ],
     'data': [
         'security/ir.model.access.csv',
+        'data/website_config.xml',
         'views/templates.xml',
+        'views/snippets.xml',
     ],
     'assets': {
         'web.assets_frontend': [
             'web_method/static/src/css/erp_free_trial_button.css',
+            'web_method/static/src/css/odoo_modules_snippet.css',
             'web_method/static/src/js/erp_free_trial_button.js',
         ],
     },
     'installable': True,
     'application': False,
     'auto_install': False,
+    'post_init_hook': 'post_init_hook',
 }
