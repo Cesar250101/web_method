@@ -24,6 +24,16 @@ class WebMethodController(http.Controller):
         """Endpoint HTTP público de prueba."""
         return request.make_response('pong', headers=[('Content-Type', 'text/plain')])
 
+    @http.route('/erp', type='http', auth='public', website=True, methods=['GET'])
+    def erp_page(self, **kwargs):
+        """Página de producto ERP."""
+        return request.render('web_method.erp_page', {})
+
+    @http.route(['/punto-de-venta', '/punto_de_venta'], type='http', auth='public', website=True, methods=['GET'])
+    def punto_de_venta_page(self, **kwargs):
+        """Página de producto Punto de Venta."""
+        return request.render('web_method.punto_de_venta_page', {})
+
     @http.route('/prueba-gratis', type='http', auth='public', website=True, methods=['GET'])
     def free_trial_form(self, **kwargs):
         """Página con formulario de Prueba Gratis."""
