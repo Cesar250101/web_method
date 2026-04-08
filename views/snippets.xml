@@ -273,15 +273,106 @@
     </template>
 
     <!-- ============================================================
+         Snippet: Llamado a página de Soluciones — estilo Method
+    ============================================================ -->
+    <template id="s_method_solutions_cta" name="Llamado a Soluciones — Method">
+        <section class="s_method_solutions_cta py-5" style="background: linear-gradient(135deg, #5a5d6b 0%, #676a76 60%, #74778a 100%); position: relative; overflow: hidden;">
+            <!-- Fondo decorativo -->
+            <div style="position:absolute;top:-60px;right:-60px;width:300px;height:300px;border-radius:50%;background:rgba(243,119,32,0.10);pointer-events:none;"/>
+            <div style="position:absolute;bottom:-80px;left:-40px;width:220px;height:220px;border-radius:50%;background:rgba(0,0,0,0.08);pointer-events:none;"/>
+
+            <div class="container" style="position:relative;z-index:1;">
+
+                <!-- Encabezado -->
+                <div class="text-center mb-5">
+                    <p class="mb-2 text-uppercase fw-bold" style="color:#F37720;font-size:0.85rem;letter-spacing:2px;">
+                        Nuestras Soluciones
+                    </p>
+                    <h2 class="fw-bold mb-3" style="color:#ffffff;font-size:2.2rem;line-height:1.25;">
+                        Encuentra la solución perfecta para <span style="color:#F37720;">tu empresa</span>
+                    </h2>
+                    <p style="color:rgba(255,255,255,0.80);font-size:1.05rem;line-height:1.7;max-width:600px;margin:0 auto;">
+                        Explora nuestras soluciones diseñadas para simplificar tu operación y ayudarte a crecer.
+                    </p>
+                </div>
+
+                <!-- Tarjetas de soluciones -->
+                <div class="row g-4 justify-content-center">
+
+                    <!-- ERP -->
+                    <div class="col-12 col-md-4">
+                        <a href="/erp" style="text-decoration:none;">
+                            <div style="background:rgba(255,255,255,0.10);border:1px solid rgba(255,255,255,0.18);border-radius:18px;padding:32px 28px;transition:all 0.25s;cursor:pointer;backdrop-filter:blur(4px);">
+                                <div style="width:52px;height:52px;border-radius:12px;background:#F37720;display:flex;align-items:center;justify-content:center;margin-bottom:18px;">
+                                    <i class="fa fa-cogs" style="color:#ffffff;font-size:1.4rem;"/>
+                                </div>
+                                <h4 style="color:#ffffff;font-weight:700;font-size:1.15rem;margin-bottom:10px;">ERP Empresarial</h4>
+                                <p style="color:rgba(255,255,255,0.75);font-size:0.92rem;line-height:1.6;margin-bottom:18px;">
+                                    Centraliza ventas, compras, inventario y contabilidad en una sola plataforma integrada.
+                                </p>
+                                <span style="color:#F37720;font-weight:600;font-size:0.9rem;">
+                                    Conocer más <i class="fa fa-arrow-right ms-1"/>
+                                </span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Punto de Venta y Servicio Técnico -->
+                    <div class="col-12 col-md-4">
+                        <a href="/punto_de_venta" style="text-decoration:none;">
+                            <div style="background:rgba(255,255,255,0.10);border:1px solid rgba(255,255,255,0.18);border-radius:18px;padding:32px 28px;transition:all 0.25s;cursor:pointer;backdrop-filter:blur(4px);">
+                                <div style="width:52px;height:52px;border-radius:12px;background:#F37720;display:flex;align-items:center;justify-content:center;margin-bottom:18px;">
+                                    <i class="fa fa-desktop" style="color:#ffffff;font-size:1.4rem;"/>
+                                </div>
+                                <h4 style="color:#ffffff;font-weight:700;font-size:1.15rem;margin-bottom:10px;">Punto de Venta</h4>
+                                <p style="color:rgba(255,255,255,0.75);font-size:0.92rem;line-height:1.6;margin-bottom:18px;">
+                                    POS moderno para locales físicos con soporte técnico especializado incluido.
+                                </p>
+                                <span style="color:#F37720;font-weight:600;font-size:0.9rem;">
+                                    Conocer más <i class="fa fa-arrow-right ms-1"/>
+                                </span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Software -->
+                    <div class="col-12 col-md-4">
+                        <a href="/servicio-tecnico" style="text-decoration:none;">
+                            <div style="background:rgba(243,119,32,0.18);border:1px solid rgba(243,119,32,0.45);border-radius:18px;padding:32px 28px;transition:all 0.25s;cursor:pointer;backdrop-filter:blur(4px);">
+                                <div style="width:52px;height:52px;border-radius:12px;background:#ffffff;display:flex;align-items:center;justify-content:center;margin-bottom:18px;">
+                                    <i class="fa fa-th-large" style="color:#F37720;font-size:1.4rem;"/>
+                                </div>
+                                <h4 style="color:#ffffff;font-weight:700;font-size:1.15rem;margin-bottom:10px;">Ver todo el Software</h4>
+                                <p style="color:rgba(255,255,255,0.75);font-size:0.92rem;line-height:1.6;margin-bottom:18px;">
+                                    Descubre todos los módulos disponibles y elige los que mejor se adaptan a tu negocio.
+                                </p>
+                                <span style="color:#F37720;font-weight:600;font-size:0.9rem;">
+                                    Explorar todo <i class="fa fa-arrow-right ms-1"/>
+                                </span>
+                            </div>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </template>
+
+    <!-- ============================================================
          Registro en el panel de snippets del editor web
     ============================================================ -->
     <template id="snippets_method_modules"
               inherit_id="website.snippets"
               name="Snippet: Módulos Odoo Method">
-        <xpath expr="//div[@id='snippet_structure']/div[hasclass('o_panel_body')]" position="before">
+        <xpath expr="//div[@id='snippet_structure']" position="before">
             <div id="snippet_method" class="o_panel">
                 <div class="o_panel_header">Method</div>
                 <div class="o_panel_body">
+                    <t t-snippet="web_method.s_method_solutions_cta"
+                       string="Llamado a Soluciones"
+                       t-thumbnail="/web_method/static/src/img/thumb_modules.svg">
+                        <keywords>soluciones, cta, llamada, explorar, método</keywords>
+                    </t>
                     <t t-snippet="web_method.s_method_stats_trust"
                        string="Estadísticas Method"
                        t-thumbnail="/web_method/static/src/img/thumb_modules.svg">

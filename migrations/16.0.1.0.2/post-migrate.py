@@ -113,6 +113,16 @@ def migrate(cr, version):
             _logger.info("  view %s (%s): replaced existing modules grid", view.id, view.key)
 
         if new_arch != arch:
+            # Validate XML before writing to avoid malformed arch errors
+            try:
+                import lxml.etree as _etree
+                _etree.fromstring(new_arch.encode('utf-8'))
+            except Exception as xml_err:
+                _logger.warning(
+                    "  view %s (%s): skipping — new_arch is invalid XML: %s",
+                    view.id, view.key, xml_err,
+                )
+                continue
             view.with_context(lang=None).write({'arch_db': new_arch})
             updated += 1
             _logger.info("  view %s: saved OK", view.id)
