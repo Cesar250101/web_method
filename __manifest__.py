@@ -1,28 +1,29 @@
 {
     'name': 'Web Method',
-    'version': '16.0.1.0.2',
-    'summary': 'Módulo para métodos web personalizados',
-    'description': 'Módulo base para definir métodos web y controladores HTTP personalizados en Odoo.',
+    'version': '16.0.2.0.1',
+    'summary': 'Sitio web EvolucionAI (landings y snippets editables) y métodos web',
+    'description': 'Sitio web de EvolucionAI v9.7: ocho landings editables desde el editor de Odoo, '
+                   'ocho snippets y formularios nativos de CRM. Incluye controladores HTTP de apoyo.',
     'category': 'Technical',
     'license': 'LGPL-3',
-    'author': '',
-    'website': '',
+    'author': 'EvolucionAI',
+    'website': 'https://evolucionai.cl',
     'depends': [
         'base',
         'web',
         'website',
+        'website_crm',
     ],
     'data': [
         'security/ir.model.access.csv',
         'data/website_config.xml',
-        'views/templates.xml',
         'views/snippets.xml',
+        'views/pages.xml',
     ],
     'assets': {
         'web.assets_frontend': [
-            'web_method/static/src/css/erp_free_trial_button.css',
-            'web_method/static/src/css/odoo_modules_snippet.css',
-            'web_method/static/src/js/erp_free_trial_button.js',
+            'web_method/static/src/css/evolucionai.css',
+            'web_method/static/src/js/evolucionai.js',
         ],
     },
     'installable': True,
